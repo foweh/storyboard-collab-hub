@@ -8,6 +8,9 @@ github-projects/
 # Reasonix 工作流配置
 .reasonix/
 
+# 临时克隆的工作仓库
+_yingxin-tmp/
+
 # 敏感文件
 sshkey
 sshkey.pub
