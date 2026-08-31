@@ -1240,3 +1240,13 @@ socket.on('admin-permission-request', ({ from, target }) => {
     socket.emit('admin-approve-permission', { from, target, approve: approved });
   });
 });
+
+// ─── 校易班纳新群二维码 ──────────────────────────────
+const qqGroupBtn = document.getElementById('qq-group-btn');
+if (qqGroupBtn) {
+  qqGroupBtn.addEventListener('click', () => {
+    if (window.openImagePreview) {
+      window.openImagePreview('/qq-group-qr.jpg');
+    }
+  });
+}

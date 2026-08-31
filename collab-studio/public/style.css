@@ -87,6 +87,27 @@ body {
 .toolbar-btn.danger:hover { background: var(--danger); color: #fff; }
 .toolbar-btn:disabled { opacity: 0.4; cursor: default; }
 
+/* 校易班纳新群按钮（醒目） */
+.qq-group-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1da1f2, #00b4d8);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 180, 216, 0.45);
+  transition: 0.15s;
+  white-space: nowrap;
+}
+.qq-group-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(0, 180, 216, 0.6);
+  filter: brightness(1.08);
+}
+.qq-group-btn:active { transform: translateY(0); }
+
 /* ─── 三栏布局 ─── */
 #main-layout { display: flex; flex: 1; overflow: hidden; }
 

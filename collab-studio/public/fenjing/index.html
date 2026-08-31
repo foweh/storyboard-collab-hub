@@ -74,6 +74,7 @@
       </div>
     </div>
 
+    <script src="/img-preview.js"></script>
     <script>
     // ─── 绘画 + 镜头绘图注入 ──────────────────────────
     (function() {
@@ -398,6 +399,29 @@
       setTimeout(() => {
         document.querySelectorAll('.shot-row:not(.new-shot-placeholder)').forEach(injectDrawButton);
       }, 1000);
+
+      // ── 镜头图片点击 → 大图预览 ──
+      // 事件委托：兼容 Vue 动态渲染的 <img> 和背景图两种形式
+      document.addEventListener('click', (e) => {
+        // 绘图按钮的点击不触发预览（按钮自身已 stopPropagation，双保险）
+        if (e.target.closest('.s-hot-btn')) return;
+        const cell = e.target.closest('.s-cell.s-img');
+        if (!cell) return;
+        let src = '';
+        const imgEl = cell.querySelector('img');
+        if (imgEl) {
+          src = imgEl.getAttribute('src') || '';
+        }
+        if (!src) {
+          const bg = getComputedStyle(cell).backgroundImage;
+          const m = bg && bg.match(/url\(["']?(.*?)["']?\)/);
+          if (m) src = m[1];
+        }
+        // 只预览真实存在的图片数据（data: 内联图或完整 URL），排除占位空图
+        if (src && (src.startsWith('data:image') || /^https?:\/\//.test(src))) {
+          if (window.openImagePreview) window.openImagePreview(src);
+        }
+      });
 
     })();
     </script>
